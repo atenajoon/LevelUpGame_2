@@ -5,26 +5,42 @@ using UnityEngine;
 public class AudioPlayer : MonoBehaviour
 {
     private AudioSource audioSource;
-    public AudioClip audioClip;
+    public AudioClip auchClip;
+    public AudioClip bingClip;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = audioClip;
 
-        // Check if AudioSource is present
-        if (audioSource == null)
+        // Check if AudioClips are assigned
+        if (auchClip == null || bingClip == null)
         {
-            Debug.LogError("AudioSource component not found on the GameObject.");
+            Debug.LogError("One or more audio clips are not assigned to CollisionTriggerAudioPlayer.");
             return;
         }
     }
 
-    public void PlayAudio()
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            PlayAudioClip(bingClip);
+        }
+        else if (other.CompareTag("Bonfire"))
+        {
+            PlayAudioClip(auchClip);
+        }
+    }
+
+    public void PlayAudioClip(AudioClip clip)
     {
         if (enabled && audioSource != null && !audioSource.isPlaying)
         {
+            // Assign the chosen audio clip to the AudioSource
+            audioSource.clip = clip;
+
+            // Play the audio
             audioSource.Play();
         }
     }

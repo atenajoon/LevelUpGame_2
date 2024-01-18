@@ -5076,7 +5076,7 @@ GameObject:
   - component: {fileID: 1922894441393278685}
   m_Layer: 0
   m_Name: Bonfire
-  m_TagString: Untagged
+  m_TagString: Bonfire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
